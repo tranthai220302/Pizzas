@@ -1,19 +1,21 @@
 import React from 'react'
 import styles from './page.module.css'
 import Image from 'next/image'
-const PizzaCard = () => {
+import Link from 'next/link'
+const PizzaCard = ({pizza}) => {
   return (
     <div className={styles.container}>
-      <Image src="/img/pizza.png" alt="" width="300" height="300" />
-      <h1 className={styles.title}>FIORI DI ZUCCA</h1>
-      <div className={styles.priceWrapper}>
-      <span className={styles.price}>$19.90</span>
-      </div>
-      <p className={styles.desc}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-      </p>
+      <Link href={`/product/${pizza._id}`}>
+        <Image src= {pizza.img} alt="" width="300" height="300" />
+        <h1 className={styles.title}>{pizza.title}</h1>
+        <div className={styles.priceWrapper}>
+        <span className={styles.price}>${pizza.prices[1]}</span>
+        </div>
+        <p className={styles.desc}>
+          {pizza.desc}
+        </p>
+      </Link>
     </div>
   )
 }
-
 export default PizzaCard

@@ -1,10 +1,14 @@
-import React from 'react'
+"use client"
+import React, { useContext } from 'react'
 import style from './page.module.css'
 import logo from '@/public/img/logo.png'
 import phone from '@/public/img/telephone.png'
 import cart from '@/public/img/cart.png'
 import Image from 'next/image'
+import CartContext from '@/context/cartContext'
+import Link from 'next/link'
 const Navbar = () => {
+  const {quantity, setQuantity} = useContext(CartContext);
   return (
     <div className={style.container}>
       <div className={style.item}>
@@ -27,18 +31,21 @@ const Navbar = () => {
           <li className={style.listItem}>Products</li>
           <li className={style.listItem}>Menu</li>
           <li className={style.listItem}>
-            <Image 
-            className={style.logo}
-            src = {logo}
-            width={160}
-            height={69}
-            />
+            <Link href="\">
+              <Image 
+                className={style.logo}
+                src = {logo}
+                width={160}
+                height={69}
+              />
+            </Link>
           </li>
           <li className={style.listItem}>Events</li>
           <li className={style.listItem}>Blog</li>
           <li className={style.listItem}>Contact</li>
         </ul>
       </div>
+      <Link href = "/cart">
       <div className={style.item}>
           <div className={style.cart}>
             <Image 
@@ -48,8 +55,8 @@ const Navbar = () => {
             height={30}
             />
           </div>
-          <div className={style.number}>2</div>
-      </div>
+          <div className={style.number}>{quantity}</div>
+      </div></Link>
     </div>
   )
 }
